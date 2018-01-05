@@ -52,6 +52,13 @@
       },
       "type": "string"
     },
+    "{{.Name}}WindowsImageSourceUrl": {
+      "defaultValue": "",
+      "metadata": {
+        "description": "OS image SKU."
+      },
+      "type": "string"
+    }, 
 {{if .IsCustomVNET}}
     "{{.Name}}VnetSubnetID": {
       "metadata": {
