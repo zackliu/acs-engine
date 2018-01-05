@@ -2,8 +2,8 @@ TARGETS           = darwin/amd64 linux/amd64 windows/amd64
 DIST_DIRS         = find * -type d -exec
 
 .NOTPARALLEL:
-
 .PHONY: bootstrap build test test_fmt validate-generated fmt lint ci devenv
+
 
 ifdef DEBUG
 GOFLAGS   := -gcflags="-N -l"
@@ -15,7 +15,11 @@ endif
 GO              ?= go
 TAGS            :=
 LDFLAGS         :=
+ifeq ($(OS),Windows_NT)
+BINDIR          := $(shell cygpath -m $(CURDIR))/bin
+else
 BINDIR          := $(CURDIR)/bin
+endif
 BINARIES        := acs-engine
 VERSION         ?= $(shell git rev-parse HEAD)
 VERSION_SHORT   ?= $(shell git rev-parse --short HEAD)
